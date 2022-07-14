@@ -1,0 +1,154 @@
+{
+  "version": "1.0.8",
+  "versionnote": "初始版本",
+  "action":[
+    {
+      "resourcename": "demo连接",
+      "resourcekey": "demoConnect1",
+      "resourcetype": "2",
+      "accounttype": "xuanwu-demo1",
+      "uri": "com.xuanwu.ipaas.plugin.demo.spi.ConnectionFactory",
+      "descr": "descr",
+      "config":
+      {
+        "input":
+        {},
+        "output":
+        {},
+        "error":
+        [
+          {
+            "errorcode": "5001",
+            "errortitle": "系统异常",
+            "errormsg": "系统异常"
+          }
+        ]
+      }
+    },
+    {
+      "resourcename": "矩阵乘法",
+      "resourcekey": "operateNumbers",
+      "resourcetype": "1",
+      "accounttype": "math",
+      "uri": "com.xuanwu.ipaas.plugin.demo.spi.DemoAction",
+      "versionnote": "初始版本",
+      "descr": "descr",
+      "config":
+      {
+        "input":
+        {
+          "properties":
+          [
+            {
+              "key": "operator",
+              "title": "运算规则",
+              "type": "paramselect",
+              "datatype": "String",
+              "defaultvalue": "",
+              "required": "true",
+              "helptxt": ""
+            },
+            {
+              "key": "numbers",
+              "title": "数字",
+              "type": "paramselect",
+              "datatype": "Map",
+              "required": "true",
+              "helptxt": "参与运算的数字",
+              "properties":
+              [
+                {
+                  "key": "first",
+                  "title": "第一个矩阵",
+                  "type": "paramselect",
+                  "datatype": "Map",
+                  "required": "true",
+                  "helptxt": "[[1,0],[0,1]]"
+                },
+                {
+                  "key": "second",
+                  "title": "第二个矩阵",
+                  "type": "paramselect",
+                  "datatype": "Map",
+                  "required": "true",
+                  "helptxt": "[[1,2],[3,4]]"
+                }
+              ]
+            }
+          ]
+        },
+        "output":
+        {
+          "properties":
+          [
+            {
+              "key": "status",
+              "title": "状态",
+              "datatype": "Integer",
+              "type": "",
+              "defaultvalue": "",
+              "required": "",
+              "helptxt": ""
+            },
+            {
+              "key": "data",
+              "title": "返回数据",
+              "datatype": "Map",
+              "type": "",
+              "defaultvalue": "",
+              "required": "",
+              "helptxt": "",
+              "properties":
+              [
+                {
+                  "key": "resultData",
+                  "title": "查询结果",
+                  "datatype": "Map",
+                  "type": "",
+                  "required": "true",
+                  "helptxt": ""
+                }
+              ]
+            },
+            {
+              "key": "error",
+              "title": "错误输出",
+              "datatype": "Map",
+              "type": "",
+              "defaultvalue": "",
+              "required": "",
+              "helptxt": "",
+              "properties":
+              [
+                {
+                  "key": "errorCode",
+                  "title": "错误编码",
+                  "datatype": "String",
+                  "type": "",
+                  "required": "",
+                  "helptxt": ""
+                },
+                {
+                  "key": "errorMsg",
+                  "title": "错误信息",
+                  "datatype": "String",
+                  "type": "",
+                  "required": "",
+                  "helptxt": ""
+                }
+              ]
+            }
+          ]
+        },
+        "error":
+        [
+          {
+            "errorcode": "5001",
+            "errortitle": "系统异常",
+            "errormsg": "系统异常"
+          }
+        ]
+      }
+    }
+  ]
+}
