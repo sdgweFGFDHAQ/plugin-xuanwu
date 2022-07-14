@@ -1,7 +1,7 @@
 {
   "version": "1.0.8",
   "versionnote": "初始版本",
-  "action":[
+  "action": [
     {
       "resourcename": "demo连接",
       "resourcekey": "demoConnect1",
@@ -9,14 +9,10 @@
       "accounttype": "xuanwu-demo1",
       "uri": "com.xuanwu.ipaas.plugin.demo.spi.ConnectionFactory",
       "descr": "descr",
-      "config":
-      {
-        "input":
-        {},
-        "output":
-        {},
-        "error":
-        [
+      "config": {
+        "input": {},
+        "output": {},
+        "error": [
           {
             "errorcode": "5001",
             "errortitle": "系统异常",
@@ -26,19 +22,16 @@
       }
     },
     {
-      "resourcename": "矩阵乘法",
+      "resourcename": "运算",
       "resourcekey": "operateNumbers",
       "resourcetype": "1",
       "accounttype": "math",
       "uri": "com.xuanwu.ipaas.plugin.demo.spi.DemoAction",
       "versionnote": "初始版本",
       "descr": "descr",
-      "config":
-      {
-        "input":
-        {
-          "properties":
-          [
+      "config": {
+        "input": {
+          "properties": [
             {
               "key": "operator",
               "title": "运算规则",
@@ -55,32 +48,65 @@
               "datatype": "Map",
               "required": "true",
               "helptxt": "参与运算的数字",
-              "properties":
-              [
+              "properties": [
                 {
                   "key": "first",
                   "title": "第一个矩阵",
                   "type": "paramselect",
-                  "datatype": "Map",
+                  "datatype": "Array",
                   "required": "true",
-                  "helptxt": "[[1,0],[0,1]]"
+                  "helptxt": "[[1,0],[0,1]]",
+                  "properties": [
+                    {
+                      "key": "a",
+                      "title": "第一行数组",
+                      "type": "paramselect",
+                      "datatype": "Array",
+                      "required": "true",
+                      "helptxt": "[1,0]"
+                    },
+                    {
+                      "key": "b",
+                      "title": "第二行数组",
+                      "type": "paramselect",
+                      "datatype": "Array",
+                      "required": "true",
+                      "helptxt": "[0,1]"
+                    }
+                  ]
                 },
                 {
                   "key": "second",
                   "title": "第二个矩阵",
                   "type": "paramselect",
-                  "datatype": "Map",
+                  "datatype": "Array",
                   "required": "true",
-                  "helptxt": "[[1,2],[3,4]]"
+                  "helptxt": "[[1,2],[3,4]]",
+                  "properties": [
+                    {
+                      "key": "c",
+                      "title": "第一行数组",
+                      "type": "paramselect",
+                      "datatype": "Array",
+                      "required": "true",
+                      "helptxt": "[1,2]"
+                    },
+                    {
+                      "key": "d",
+                      "title": "第一行数组",
+                      "type": "paramselect",
+                      "datatype": "Array",
+                      "required": "true",
+                      "helptxt": "[3,4]"
+                    }
+                  ]
                 }
               ]
             }
           ]
         },
-        "output":
-        {
-          "properties":
-          [
+        "output": {
+          "properties": [
             {
               "key": "status",
               "title": "状态",
@@ -98,8 +124,7 @@
               "defaultvalue": "",
               "required": "",
               "helptxt": "",
-              "properties":
-              [
+              "properties": [
                 {
                   "key": "resultData",
                   "title": "查询结果",
@@ -118,8 +143,7 @@
               "defaultvalue": "",
               "required": "",
               "helptxt": "",
-              "properties":
-              [
+              "properties": [
                 {
                   "key": "errorCode",
                   "title": "错误编码",
@@ -140,8 +164,7 @@
             }
           ]
         },
-        "error":
-        [
+        "error": [
           {
             "errorcode": "5001",
             "errortitle": "系统异常",

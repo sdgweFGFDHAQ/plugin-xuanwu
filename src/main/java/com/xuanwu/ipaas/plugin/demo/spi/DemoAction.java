@@ -10,6 +10,7 @@ import com.xuanwu.ipaas.plugin.sdk.util.HttpClientUtils;
 import com.xuanwu.ipaas.plugin.sdk.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +28,23 @@ public class DemoAction implements ActionSPI {
         try {
             log.info("接口入参： " + JsonUtils.toJSONString(input));
             Map numbers = (Map) input.get("numbers");
-            log.info(String.valueOf(input.get("numbers").getClass()));
-//            log.info("接口入参： " + JsonUtils.toJSONString(numbers.get("first")));
-            int first = (int) numbers.get("first");
-//            System.out.println(first);
-            int second = (int) numbers.get("second");
-            int res = first + second;
+            log.info(String.valueOf(numbers));
+            Map first = (Map) numbers.get("first");
+            log.info("第一个矩阵 " + JsonUtils.toJSONString(first));
+            Map second = (Map) numbers.get("second");
+            ArrayList a = (ArrayList) first.get("a");
+            log.info("第一行数据 " + JsonUtils.toJSONString(a));
+            ArrayList b = (ArrayList) first.get("b");
+            log.info("第二行数据 " + JsonUtils.toJSONString(b));
+            ArrayList c = (ArrayList) second.get("c");
+            ArrayList d = (ArrayList) second.get("d");
+            log.info("第er...二行数据 " + JsonUtils.toJSONString(c) + JsonUtils.toJSONString(d));
+            int res = 0;
+            for (int i = 0; i < 2; i++) {
+                System.out.println(a.get(i));
+                res += (int) a.get(i) * (int) c.get(i) + (int) b.get(i) * (int) d.get(i);
+            }
+            log.info("结果： " + JsonUtils.toJSONString(res));
             HashMap<String, Integer> data = new HashMap<>();
             data.put("add", res);
 //            data.put("add", 5);
@@ -44,19 +56,40 @@ public class DemoAction implements ActionSPI {
         }
     }
 
+//    public int[][] mapToArray(Map map) {
+//        int[][] arr = new int[2][2];
+//        //略
+//        return arr;
+//    }
+
     public static void main(String[] args) {
         DemoAction dA = new DemoAction();
         Map<String, Object> input = new HashMap<>();
         Map<String, Object> num = new HashMap<>();
-        num.put("first", 2);
-        num.put("second", 3);
-        String s = JsonUtils.toJSONString(num);
-        input.put("numbers", s);
+        Map<String, Object> ab = new HashMap<>();
+        ArrayList a = new ArrayList();
+        a.add(1);
+        a.add(0);
+        ArrayList b = new ArrayList();
+        b.add(0);
+        b.add(1);
+        ab.put("a", a);
+        ab.put("b", b);
+        Map<String, Object> cd = new HashMap<>();
+        ArrayList c = new ArrayList();
+        c.add(1);
+        c.add(0);
+        ArrayList d = new ArrayList();
+        d.add(0);
+        d.add(1);
+        cd.put("c", c);
+        cd.put("d", d);
+        num.put("first", ab);
+        num.put("second", cd);
+        input.put("numbers", num);
         Connection con = null;
         Map<String, Object> action = dA.action(con, input);
         System.out.printf(String.valueOf(action));
-
-
     }
 }
 
